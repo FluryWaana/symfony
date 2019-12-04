@@ -1,0 +1,12 @@
+{% extends 'layout/layout.front.html.twig' %}
+
+{% block title %} Liste des produits {% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="card">
+            <h1 class="card-header">Ajout d'un produit</h1>
+            {{ include('produit/_form.html.twig') }}
+        </div>
+    </div>
+{% endblock %}

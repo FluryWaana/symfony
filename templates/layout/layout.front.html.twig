@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>{% block title %}{% endblock %}</title>
+
+        <!-- Début du style -->
+        {% block stylesheets %}{% endblock %}
+        <link href="{{ asset('css/bootstrap-reboot.min.css') }}" rel="stylesheet" />
+        <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" />
+        <link href="{{ asset('css/all.min.css') }}" rel="stylesheet" />
+        <link href="{{ asset('css/style.css') }}" rel="stylesheet" />
+        <!-- Fin du style -->
+
+    </head>
+    <body>
+    <!-- Début de la barre de navigation -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <!-- Début du bouton Hamburger -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu_navbar" aria-controls="menu_navbar" aria-expanded="false" >
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Fin du bouton Hamburger -->
+
+            <div class="collapse navbar-collapse" id="menu_navbar">
+                <!-- Début du titre de la barre de navigation -->
+                <a class="navbar-brand" href="{{ path('home') }}">Symfony</a>
+                <!-- Fin du titre de la barre de navigation -->
+
+                <!-- Début du menu de la navbar -->
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item {% if 'home' in app.request.attributes.get('_route') %}active{% endif %}">
+                        <a class="nav-link" href="{{ path('home') }}">Accueil</a>
+                    </li>
+                    <li class="nav-item {% if 'produit' in app.request.attributes.get('_route') %}active{% endif %}">
+                        <a class="nav-link" href="{{ path('produit_index') }}">Produits</a>
+                    </li>
+                    <li class="nav-item {% if 'categorie' in app.request.attributes.get('_route') %}active{% endif %}">
+                        <a class="nav-link" href="{{ path('categorie_index') }}">Catégories</a>
+                    </li>
+                </ul>
+                <!-- Fin du menu de la navbar -->
+            </div>
+
+            <!-- Début menu droite -->
+            <div class="form-inline text-white">
+                {% if app.user %}
+                    <div class="dropdown">
+                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{ app.user.username }}
+                        </a>
+
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="#">Dashboard</a>
+                            <a class="dropdown-item" href="#">Mon profil</a>
+                            <a class="dropdown-item" href="{{ path('app_logout') }}">Déconnexion</a>
+                        </div>
+                    </div>
+                {% else %}
+                    <a href="{{ path('app_login') }}" class="text-decoration-none nav-link">
+                        <i class="fas fa-sign-in-alt"></i> Connexion
+                    </a>
+                    <span>/</span>
+                    <a href="{{ path('app_register') }}" class="text-decoration-none nav-link">
+                        <i class="fas fa-user"></i> S'enregistrer
+                    </a>
+                {% endif %}
+            </div>
+            <!-- Fin menu droite -->
+        </nav>
+        <!-- Fin de la barre de navigation -->
+
+        <!-- Début du BODY -->
+        <main class="pt-3">
+            {% block body %}{% endblock %}
+        </main>
+        <!-- Fin du BODY -->
+
+        <!-- Début chargement scripts JS -->
+        <script src="{{ asset('js/jquery.min.js') }}"></script>
+        <script src="{{ asset('js/popper.min.js') }}"></script>
+        <script src="{{ asset('js/bootstrap.min.js') }}" ></script>
+        {% block javascripts %}{% endblock %}
+        <!-- Fin chargement scripts JS -->
+    </body>
+</html>

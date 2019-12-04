@@ -1,0 +1,34 @@
+{% extends 'layout/layout.front.html.twig' %}
+
+{% block title %}Symfony - Connexion{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <form class="card" method="post">
+            <h1 class="card-header">Authentification</h1>
+
+            <div class="card-body">
+                <label for="inputEmail">Adresse email</label>
+                <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus>
+                <label for="inputPassword">Mot de passe</label>
+                <input type="password" name="password" id="inputPassword" class="form-control" required>
+
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+                <div class="checkbox mb-3">
+                    <label>
+                        <input type="checkbox" name="_remember_me"> Se sourvenir de moi
+                    </label>
+                </div>
+
+                {% if error %}
+                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
+
+                <button class="btn btn-lg btn-primary" type="submit">
+                    Se connecter
+                </button>
+            </div>
+        </form>
+    </div>
+{% endblock %}
