@@ -88,7 +88,6 @@ class CategorieController extends AbstractController
             $entityManager->remove($categorie);
             $entityManager->flush();
         }
-
-        return $this->redirectToRoute('categorie_index');
+        return $this->json( $categorie );
     }
 }

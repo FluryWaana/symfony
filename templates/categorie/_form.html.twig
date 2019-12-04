@@ -1,4 +1,7 @@
-{{ form_start(form) }}
+<div class="card-body">
+    {{ form_start(form) }}
     {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+    <button class="btn btn-primary">{{ button_label|default('Créer') }}</button>
+    <a class="btn btn-danger" href="{{ path('categorie_index') }}">Annuler</a>
+    {{ form_end(form) }}
+</div>

@@ -1,11 +1,21 @@
-<!DOCTYPE html>
+{% extends 'layout/layout.front.html.twig' %}
 
-<title>New Categorie</title>
+{% block title %} Création d'une catégorie {% endblock %}
 
 {% block body %}
-    <h1>Create new Categorie</h1>
-
-    {{ include('categorie/_form.html.twig') }}
-
-    <a href="{{ path('categorie_index') }}">back to list</a>
+    <div class="container">
+        <div class="card">
+            <!-- Début du titre du contenu de la page -->
+            <div class="card-header">
+                <div class="row">
+                    <h1 class="col">Création d'une catégorie</h1>
+                    <div class="col-1 my-auto">
+                        <a class="text-decoration-none" href="{{ path('categorie_index') }}"><i class="fas fa-arrow-alt-circle-left fa-lg"></i></a>
+                    </div>
+                </div>
+            </div>
+            <!-- Fin du titre du contenu de la page -->
+            {{ include('categorie/_form.html.twig') }}
+        </div>
+    </div>
 {% endblock %}
